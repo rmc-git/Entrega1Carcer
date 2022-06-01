@@ -17,4 +17,5 @@ Vistas:
 - http://localhost:8000/verfamilia/
 - http://localhost:8000/vermascota/
 - http://localhost:8000/cargarpersona/
+- http://localhost:8000/cargarmascota/
 
