@@ -1,0 +1,39 @@
+{% extends "familia/base.html" %}
+
+{% load bootstrap5 %}
+
+{% block cuerpo %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<>, initial-scale=1.0">
+    <title>Familiares</title>
+</head>
+<body>
+    <h2>{{app1}}</h2>
+    {% if personas %}
+    <ul>
+        {% for persona in personas %}
+        <li>{{persona.nombre}}</li>
+        <li>{{persona.edad}}</li>
+        <li>{{persona.email}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>{{app2}}</h2>
+    {% if mascotas %}
+    <ul>
+        {% for mascota in mascotas %}
+        <li>{{mascota.nombre}}</li>
+        <li>{{mascota.edad}}</li>
+        <li>{{mascota.tipo}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}      
+</body>
+</html>
+
+{% endblock %}
