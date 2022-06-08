@@ -11,4 +11,7 @@ class Mascota(models.Model):
     nombre = models.CharField(max_length=50)
     edad = models.IntegerField()
     tipo = models.CharField(max_length=50)
+
+class Hobbies(models.Model):
+    nombre = models.CharField(max_length=50)
     

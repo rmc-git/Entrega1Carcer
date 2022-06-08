@@ -2,28 +2,51 @@
 
 {% load bootstrap5 %}
 
+
 {% block cuerpo %}
+<div class="container">    
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=<>, initial-scale=1.0">
-    <title>Familiares</title>
-</head>
-<body>
-    <h2>{{app}}</h2>
-    {% if personas %}
-    <ul>
-        {% for persona in personas %}
-        <li>{{persona.nombre}}</li>
-        <li>{{persona.edad}}</li>
-        <li>{{persona.email}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}    
-</body>
-</html>
+  {% if resultados_busqueda %}
+    <h1>Resultados de la busqueda</h1>
+  {%endif%}
+  
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_persona' as agregar_url %}
+      {% bootstrap_button "Agregar Persona" button_class="btn-primary" button_type="link" href=agregar_url %}
+      {% url 'buscar_persona' as buscar_persona_url %}
+      {% bootstrap_button "Buscar Persona" button_class="btn-secondary" button_type="link" href=buscar_persona_url %}
+    <div>
+  <div>
 
+  <div class="row">
+    <div class="col">
+        <h2>{{app1}}</h2>
+        {% if personas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Email</th>
+            </thead>
+        
+            {% for p in personas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{p.id}} </th>
+                    <td> {{p.nombre}} </td>
+                    <td> {{p.edad}} </td>
+                    <td> {{p.email}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>-- No hay Familiares --</No></p>
+        {% endif %}
+
+  
+    </div>
+  </div>
+</div>
 {% endblock %}

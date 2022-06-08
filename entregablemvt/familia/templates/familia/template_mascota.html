@@ -2,29 +2,52 @@
 
 {% load bootstrap5 %}
 
+
 {% block cuerpo %}
+<div class="container">    
 
+  {% if resultados_busqueda %}
+    <h1>Resultados de la busqueda</h1>
+  {%endif%}
+  
+ 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=<>, initial-scale=1.0">
-    <title>Familiares</title>
-</head>
-<body>
-    <h2>{{app}}</h2>
-    {% if mascotas %}
-    <ul>
-        {% for mascota in mascotas %}
-        <li>{{mascota.nombre}}</li>
-        <li>{{mascota.edad}}</li>
-        <li>{{mascota.tipo}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}    
-</body>
-</html>
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_mascota' as agregar_url %}
+      {% bootstrap_button "Agregar Mascota" button_class="btn-primary" button_type="link" href=agregar_url %} 
+      {% url 'buscar_mascota' as buscar_mascota_url %}
+      {% bootstrap_button "Buscar Mascota" button_class="btn-secondary" button_type="link" href=buscar_mascota_url %}
+      <div>
+  <div>        
 
+  <div class="row">
+    <div class="col">        
+        <h2>{{app2}}</h2>
+        {% if mascotas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Tipo</th>
+            </thead>
+                
+            {% for m in mascotas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{m.id}} </th>
+                    <td> {{m.nombre}} </td>
+                    <td> {{m.edad}} </td>
+                    <td> {{m.tipo}} </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>-- No hay Mascotas --</p>
+        {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

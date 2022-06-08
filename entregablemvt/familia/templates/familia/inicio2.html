@@ -1,0 +1,110 @@
+{% extends "familia/base.html" %}
+
+{% load bootstrap5 %}
+
+
+{% block cuerpo %}
+<div class="container">    
+
+  {% if resultados_busqueda %}
+    <h1>Resultados de la busqueda</h1>
+  {%endif%}
+  
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_persona' as agregar_url %}
+      {% bootstrap_button "Agregar Persona" button_class="btn-primary" button_type="link" href=agregar_url %}
+      {% url 'buscar_persona' as buscar_persona_url %}
+      {% bootstrap_button "Buscar Persona" button_class="btn-secondary" button_type="link" href=buscar_persona_url %}
+    <div>
+  <div>
+
+  <div class="row">
+    <div class="col">
+        <h2>{{app1}}</h2>
+        {% if personas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Email</th>
+            </thead>
+        
+            {% for p in personas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{p.id}} </th>
+                    <td> {{p.nombre}} </td>
+                    <td> {{p.edad}} </td>
+                    <td> {{p.email}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>-- No hay Familiares --</No></p>
+        {% endif %}
+
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_mascota' as agregar_url %}
+      {% bootstrap_button "Agregar Mascota" button_class="btn-primary" button_type="link" href=agregar_url %} 
+      {% url 'buscar_mascota' as buscar_mascota_url %}
+      {% bootstrap_button "Buscar Mascota" button_class="btn-secondary" button_type="link" href=buscar_mascota_url %}
+      <div>
+  <div>        
+
+  <div class="row">
+    <div class="col">        
+        <h2>{{app2}}</h2>
+        {% if mascotas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Tipo</th>
+            </thead>
+                
+            {% for m in mascotas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{m.id}} </th>
+                    <td> {{m.nombre}} </td>
+                    <td> {{m.edad}} </td>
+                    <td> {{m.tipo}} </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>-- No hay Mascotas --</p>
+        {% endif %}
+
+        
+      
+        <div class="row">
+          <div class="col">
+              <h2>{{app3}}</h2>
+              {% if hobbies %}
+              <table class="table">
+                  <thead>
+                      <th scope="col">Identificador</th>
+                      <th scope="col">Nombre</th>
+                  </thead>
+              
+                  {% for p in hobbies %}
+                  <tbody>
+                      <tr>
+                          <th scope="row">{{p.id}} </th>
+                          <td> {{p.nombre}} </td>
+                      </tr>
+                  {% endfor %}
+              </table>
+              {% else %}
+                  <p>-- No hay hobbies --</No></p>
+              {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "familia/base.html" %}
+
+{% load bootstrap5 %}
+
+
+{% block cuerpo %}
+<div class="container">    
+
+  {% if resultados_busqueda %}
+    <h1>Resultados de la busqueda</h1>
+  {%endif%}
+  
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_persona' as agregar_url %}
+      {% url 'buscar_persona' as buscar_url %}
+      {% bootstrap_button "Agregar Persona" button_class="btn-success" button_type="link" href=agregar_url %} 
+      {% bootstrap_button "Buscar Persona" button_class="btn-success" button_type="link" href=buscar_url %}  
+    <div>
+  <div>
+
+  <div class="row">
+    <div class="col">
+        <h2>{{app1}}</h2>
+        {% if personas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Email</th>
+                <th scope="col">Acciones</th>
+            </thead>
+        
+            {% for p in personas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{p.id}} </th>
+                    <td> {{p.nombre}} </td>
+                    <td> {{p.edad}} </td>
+                    <td> {{p.email}} </td>
+                    <td>
+                      {% url 'borrar' identificador=p.id as borrar_url %}
+                      {% url 'actualizar' identificador=p.id as actualizar_url %} 
+                      {% bootstrap_button "Borrar Persona" size="sm" button_class="btn-danger" button_type="link" href=borrar_url %}
+                      {% bootstrap_button "Actualizar Persona" size="sm" button_class="btn-warning" button_type="link" href=actualizar_url %}
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No hay Familiares</p>
+        {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_mascota' as agregar_url %}
+      {% url 'buscar_mascota' as buscar_url %}
+      {% bootstrap_button "Agregar Mascota" %button_class="btn-success" button_type="link" href=agregar_url %} 
+      {% bootstrap_button "Buscar Mascota" button_class="btn-success" button_type="link" href=buscar_url %}  
+    <div>
+  <div>
+
+    <h2>{{app2}}</h2>
+    {% if mascotas %}
+    <table class="table">
+        <thead>
+            <th scope="col">Identificador</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Acciones</th>
+        </thead>
+            
+        {% for m in mascotas %}
+        <tbody>
+            <tr>
+                <th scope="row">{{m.id}} </th>
+                <td> {{m.nombre}} </td>
+                <td> {{m.edad}} </td>
+                <td> {{m.tipo}} </td>
+                <td>
+                    {% url 'borrar' identificador=p.id as borrar_url %}
+                    {% url 'actualizar' identificador=p.id as actualizar_url %} 
+                    {% bootstrap_button "Borrar Mascota" size="sm" button_class="btn-danger" button_type="link" href=borrar_url %}
+                    {% bootstrap_button "Actualizar Mascota" size="sm" button_class="btn-warning" button_type="link" href=actualizar_url %}
+    
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No hay Mascotas</p>
+    {% endif %}  
+
+</div>
+{% endblock %}
